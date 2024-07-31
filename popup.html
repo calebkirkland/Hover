@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Summarizer Settings</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    label { display: block; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>YouTube Summarizer</h1>
+  <p>Press CTRL and hover over a video thumbnail to see a summary.</p>
+  <label>
+    <input type="checkbox" id="enableSummarizer" checked>
+    Enable summarizer
+  </label>
+  <label>
+    Summary length:
+    <select id="summaryLength">
+      <option value="short">Short</option>
+      <option value="medium" selected>Medium</option>
+      <option value="long">Long</option>
+    </select>
+  </label>
+  <script src="popup.js"></script>
+</body>
+</html>

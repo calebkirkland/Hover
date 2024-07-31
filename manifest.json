@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Video Summarizer",
+  "version": "1.0",
+  "description": "Provides AI-generated summaries of YouTube videos on CTRL + hover",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+  {
+    "matches": ["https://www.youtube.com/*"],
+    "js": ["content.js"],
+    "css": ["styles.css"]
+  }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
