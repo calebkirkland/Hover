@@ -6,7 +6,7 @@ document.addEventListener('mouseout', handleMouseOut);
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);
 
-const YOUTUBE_API_KEY = 'your_youtube_api_key_here'; // Replace with your actual API key
+const YOUTUBE_API_KEY = 'EXAMPLE KEY'; // Replace with your actual API key
 
 async function fetchVideoInfo(videoId) {
   const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`;

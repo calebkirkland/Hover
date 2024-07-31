@@ -1,5 +1,5 @@
 const HUGGING_FACE_API_URL = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn';
-const HUGGING_FACE_API_KEY = 'your_api_key_here'; // Replace with your actual API key
+const HUGGING_FACE_API_KEY = 'EXAMPLE KEY'; // Replace with your actual API key
 
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
