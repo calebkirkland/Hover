@@ -7,7 +7,7 @@ Hover AI is a Chrome extension that provides AI-generated summaries of YouTube v
 - AI-generated summaries of YouTube videos
 - Activated by CTRL + Shift + Mouse Hover
 - Minimal impact on browsing performance
-- Powered by open-source AI models
+- Powered by Bart-Large-CNN summarization model from Meta/Facebook
 
 ## Installation
 
