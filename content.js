@@ -50,9 +50,11 @@ function handleKeyDown(event) {
 }
 
 function handleKeyUp(event) {
-  if (!event.ctrlKey && summaryPopup) {
-    summaryPopup.remove();
-    summaryPopup = null;
+  if (!event.ctrlKey || !event.shiftKey) {
+    if (summaryPopup) {
+      summaryPopup.remove();
+      summaryPopup = null;
+    }
   }
 }
 
@@ -66,25 +68,25 @@ function extractVideoId(element) {
 }
 
 async function handleKeyDown(event) {
-    if (event.ctrlKey && hoveredElement) {
-      const videoId = extractVideoId(hoveredElement);
-      if (videoId) {
-        showSummaryPopup('', true); // Show loading state
-        try {
-          const videoInfo = await fetchVideoInfo(videoId);
-          chrome.runtime.sendMessage({ action: 'summarize', videoInfo }, response => {
-            if (response.summary) {
-              showSummaryPopup(response.summary);
-            } else if (response.error) {
-              showSummaryPopup(response.error, false, true);
-            }
-          });
-        } catch (error) {
-          showSummaryPopup(error.message, false, true);
-        }
+  if (event.ctrlKey && event.shiftKey && hoveredElement) {
+    const videoId = extractVideoId(hoveredElement);
+    if (videoId) {
+      showSummaryPopup('', true); // Show loading state
+      try {
+        const videoInfo = await fetchVideoInfo(videoId);
+        chrome.runtime.sendMessage({ action: 'summarize', videoInfo }, response => {
+          if (response.summary) {
+            showSummaryPopup(response.summary);
+          } else if (response.error) {
+            showSummaryPopup(response.error, false, true);
+          }
+        });
+      } catch (error) {
+        showSummaryPopup(error.message, false, true);
       }
     }
-}  
+  }
+}
 
 function showSummaryPopup(content, isLoading = false, isError = false) {
     if (summaryPopup) {
