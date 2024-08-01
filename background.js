@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 async function summarizeVideo(videoInfo, length) {
   const maxLength = length === 'short' ? 50 : length === 'long' ? 200 : 100;
-  const prompt = `Provide a concise ${maxLength}-character overview of this YouTube video, focusing on its main topic, key points, and overall message. Dont just list what was said, but synthesize the content into a coherent summary: Title: ${videoInfo.title} Description: ${videoInfo.description}`;
+  const prompt = `Provide a concise ${maxLength}-character summary of this YouTube video. Title: ${videoInfo.title} Description: ${videoInfo.description} Captions: ${videoInfo.captions ? videoInfo.captions.substring(0, 1000) : 'Not available'}`;
   
   const response = await fetch(HUGGING_FACE_API_URL, {
     method: 'POST',

@@ -23,20 +23,34 @@ document.addEventListener('keyup', handleKeyUp);
 const YOUTUBE_API_KEY = ''; // Replace with your Youtube API key
 
 async function fetchVideoInfo(videoId) {
-  const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`;
-  const response = await fetch(url);
+  const [videoData, captions] = await Promise.all([
+    fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`),
+    fetchVideoCaptions(videoId)
+  ]);
   
-  if (!response.ok) {
-    throw new Error('Failed to fetch video info');
-  }
-
-  const data = await response.json();
+  const data = await videoData.json();
   const videoInfo = data.items[0].snippet;
+  
   return {
     id: videoId,
     title: videoInfo.title,
-    description: videoInfo.description
+    description: videoInfo.description,
+    captions: captions
   };
+}
+
+
+async function fetchVideoCaptions(videoId) {
+  const url = `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${YOUTUBE_API_KEY}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  
+  if (data.items && data.items.length > 0) {
+    const captionTrackUrl = data.items[0].snippet.downloadUrl;
+    const captionResponse = await fetch(captionTrackUrl);
+    return await captionResponse.text();
+  }
+  return null;
 }
 
 function handleMouseOver(event) {

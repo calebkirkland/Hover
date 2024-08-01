@@ -1,27 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hover Settings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hover AI Settings</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    label { display: block; margin-bottom: 10px; }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      width: 300px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #61dafb;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .setting {
+      margin-bottom: 20px;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #3d3d3d;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #61dafb;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    select {
+      background-color: #3d3d3d;
+      color: #ffffff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    label[for="summaryLength"] {
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
   <h1>Hover Settings</h1>
   <p>Press CTRL + Shift and hover over a video thumbnail to see a summary.</p>
-  <label>
-    <input type="checkbox" id="enableSummarizer" checked>
-    Enable summarizer
-  </label>
-  <label>
-    Summary length:
+  <div class="setting">
+    <label>
+      <span class="toggle">
+        <input type="checkbox" id="enableSummarizer" checked>
+        <span class="slider"></span>
+      </span>
+      Enable summarizer
+    </label>
+  </div>
+  <div class="setting">
+    <label for="summaryLength">Summary length:</label>
     <select id="summaryLength">
       <option value="short">Short</option>
       <option value="medium" selected>Medium</option>
       <option value="long">Long</option>
     </select>
-  </label>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>
