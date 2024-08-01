@@ -3,7 +3,7 @@ const HUGGING_FACE_API_KEY = ''; // Replace with your HuggingFace API key
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'summarize') {
-    // Always treat the summarizer as enabled
+    // Always treat the summarizer as enabled for now
     summarizeVideo(request.videoInfo, 'medium')
       .then(summary => sendResponse({ summary }))
       .catch(error => sendResponse({ error: error.message }));
@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 async function summarizeVideo(videoInfo, length) {
   const maxLength = length === 'short' ? 50 : length === 'long' ? 200 : 100;
-  const prompt = `Provide a concise ${maxLength}-character summary of this YouTube video. Title: ${videoInfo.title} Description: ${videoInfo.description} Captions: ${videoInfo.captions ? videoInfo.captions.substring(0, 1000) : 'Not available'}`;
+  const prompt = `Summarize the following YouTube video in about ${maxLength} characters:Title: ${videoInfo.title} Description: ${videoInfo.description} Captions: ${videoInfo.captions ? videoInfo.captions.substring(0, 1000) : 'Not available'}`;
   
   const response = await fetch(HUGGING_FACE_API_URL, {
     method: 'POST',
