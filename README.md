@@ -1,3 +1,5 @@
+![Logo](/icons/icon128.png)
+
 # Hover AI
 
 Hover AI is a Chrome extension that provides AI-generated summaries of YouTube videos when you press CTRL + Shift and hover over a video thumbnail.
