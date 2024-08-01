@@ -1,4 +1,4 @@
-![Logo](/icons/icon128.png)
+![Logo](/icons/icon128rounded.png)
 
 # Hover AI
 

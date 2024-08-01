@@ -73,9 +73,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true; // Indicates async response
   }
 });
-
-// async function summarizeVideo(videoInfo) {
-//   // Placeholder for AI summarization logic
-//   // In a real implementation, this would call an AI service
-//   return `Summary of "${videoInfo.title}": ${videoInfo.description.substring(0, 100)}:`;
-// }
