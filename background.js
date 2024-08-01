@@ -1,22 +1,6 @@
 const HUGGING_FACE_API_URL = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn';
 const HUGGING_FACE_API_KEY = ''; // Replace with your HuggingFace API key
 
-
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//     if (request.action === 'summarize') {
-//       chrome.storage.sync.get(['enabled', 'summaryLength'], (result) => {
-//         if (result.enabled) {
-//           summarizeVideo(request.videoInfo, result.summaryLength)
-//             .then(summary => sendResponse({ summary }))
-//             .catch(error => sendResponse({ error: error.message }));
-//         } else {
-//           sendResponse({ error: 'Summarizer is disabled' });
-//         }
-//       });
-//       return true;
-//     }
-//   });
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'summarize') {
     // Always treat the summarizer as enabled
@@ -29,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 async function summarizeVideo(videoInfo, length) {
   const maxLength = length === 'short' ? 50 : length === 'long' ? 200 : 100;
-  const prompt = `Summarize the following YouTube video in about ${maxLength} characters:\nTitle: ${videoInfo.title}\nDescription: ${videoInfo.description}`;
+  const prompt = `Provide a concise ${maxLength}-character overview of this YouTube video, focusing on its main topic, key points, and overall message. Dont just list what was said, but synthesize the content into a coherent summary: Title: ${videoInfo.title} Description: ${videoInfo.description}`;
   
   const response = await fetch(HUGGING_FACE_API_URL, {
     method: 'POST',
@@ -61,7 +45,6 @@ async function summarizeVideo(videoInfo, length) {
   
   return summary.trim();
 }
-
 
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

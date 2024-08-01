@@ -82,7 +82,6 @@ function extractVideoId(element) {
   return null;
 }
 
-
 async function generateSummary() {
   const videoId = extractVideoId(hoveredElement);
   if (videoId) {
@@ -147,8 +146,11 @@ function showSummaryPopup(content, isLoading = false, isError = false) {
   summaryPopup.appendChild(contentDiv);
 
   const rect = hoveredElement.getBoundingClientRect();
-  summaryPopup.style.left = `${rect.left}px`;
-  summaryPopup.style.top = `${rect.bottom + 10}px`;
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+  summaryPopup.style.left = `${rect.left + scrollLeft}px`;
+  summaryPopup.style.top = `${rect.bottom + scrollTop + 10}px`;
 
   document.body.appendChild(summaryPopup);
 
