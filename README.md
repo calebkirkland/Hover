@@ -1,4 +1,6 @@
-![Logo](/icons/icon128rounded.png)
+![Logo](/assets/icon128rounded.png)
+
+https://github.com/user-attachments/assets/a0ccfb6e-b64f-4952-a32f-6f4e345eefb1
 
 # Hover
 

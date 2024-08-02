@@ -13,6 +13,7 @@ function debounce(func, wait) {
   };
 }
 
+// Creates a debounced version of the generateSummary function. This means that when debouncedGenerateSummary is called multiple times quickly, it will only execute the generateSummary function once.
 const debouncedGenerateSummary = debounce(generateSummary, 300);
 
 document.addEventListener('mouseover', handleMouseOver);
@@ -38,7 +39,6 @@ async function fetchVideoInfo(videoId) {
     captions: captions
   };
 }
-
 
 async function fetchVideoCaptions(videoId) {
   const url = `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${YOUTUBE_API_KEY}`;
