@@ -4,12 +4,12 @@ https://github.com/user-attachments/assets/a0ccfb6e-b64f-4952-a32f-6f4e345eefb1
 
 # Hover
 
-Hover is a Chrome extension that provides AI-generated summaries of YouTube videos when you press CTRL + Shift and hover over a video thumbnail.
+Hover is a Chrome extension that provides AI-generated summaries of YouTube videos when you hover over a video thumbnail and press CTRL + Shift.
 
 ## Features
 
 - AI-generated summaries of YouTube videos
-- Activated by CTRL + Shift + Mouse Hover
+- Activated by Mouse Hover + CTRL + Shift
 - Minimal impact on browsing performance
 - Powered by Bart-Large-CNN summarization model from Meta/Facebook
 
@@ -23,7 +23,7 @@ Hover is a Chrome extension that provides AI-generated summaries of YouTube vide
 ## Usage
 
 1. Go to YouTube.
-2. Hold CTRL + Shift and hover over any video thumbnail.
+2. Hover over any video thumbnail and hold CTRL + Shift.
 
 ## Support
 
